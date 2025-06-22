@@ -1,32 +1,32 @@
-name: OpenSky Veri Aktarımı
+name: Air Traffic Automation
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # Her 10 dakikada bir çalışır
-  workflow_dispatch:        # Manuel çalıştırma seçeneği
+    - cron: '*/15 * * * *'  # Her 15 dakikada bir
+  workflow_dispatch:        # Elle tetiklemeye de izin verir
 
 jobs:
-  run-script:
+  fetch-and-upload:
     runs-on: ubuntu-latest
 
+    env:
+      OPEN_SKY_CLIENT_ID: ${{ secrets.OPEN_SKY_CLIENT_ID }}
+      OPEN_SKY_CLIENT_SECRET: ${{ secrets.OPEN_SKY_CLIENT_SECRET }}
+      NEON_DB_URL: ${{ secrets.NEON_DB_URL }}
+
     steps:
-      - name: Repo'yu klonla
-        uses: actions/checkout@v3
+    - name: Checkout Repo
+      uses: actions/checkout@v3
 
-      - name: Python kurulum
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
 
-      - name: Gerekli kütüphaneleri yükle
-        run: pip install -r requirements.txt
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas requests sqlalchemy psycopg2-binary
 
-      - name: Scripti çalıştır
-        env:
-          NEON_USER: ${{ secrets.NEON_USER }}
-          NEON_PASSWORD: ${{ secrets.NEON_PASSWORD }}
-          NEON_HOST: ${{ secrets.NEON_HOST }}
-          NEON_DB: ${{ secrets.NEON_DB }}
-          OS_CLIENT_ID: ${{ secrets.OS_CLIENT_ID }}
-          OS_CLIENT_SECRET: ${{ secrets.OS_CLIENT_SECRET }}
-        run: python script.py
+    - name: Run air traffic script
+      run: python script.py
