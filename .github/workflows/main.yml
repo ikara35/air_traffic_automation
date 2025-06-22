@@ -1,0 +1,32 @@
+name: OpenSky Veri Aktarımı
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"  # Her 10 dakikada bir çalışır
+  workflow_dispatch:        # Manuel çalıştırma seçeneği
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repo'yu klonla
+        uses: actions/checkout@v3
+
+      - name: Python kurulum
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Gerekli kütüphaneleri yükle
+        run: pip install -r requirements.txt
+
+      - name: Scripti çalıştır
+        env:
+          NEON_USER: ${{ secrets.NEON_USER }}
+          NEON_PASSWORD: ${{ secrets.NEON_PASSWORD }}
+          NEON_HOST: ${{ secrets.NEON_HOST }}
+          NEON_DB: ${{ secrets.NEON_DB }}
+          OS_CLIENT_ID: ${{ secrets.OS_CLIENT_ID }}
+          OS_CLIENT_SECRET: ${{ secrets.OS_CLIENT_SECRET }}
+        run: python script.py
