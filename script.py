@@ -30,7 +30,12 @@ columns = [
     "spi", "position_source"
 ]
 df = pd.DataFrame(data.get("states", []), columns=columns)
-df["retrieved_at"] = datetime.now(timezone.utc)
+retrieved_at_utc = datetime.now(timezone.utc)
+retrieved_at_tr = retrieved_at_utc + timedelta(hours=3)
+
+df["retrieved_at"] = retrieved_at_utc
+df["retrieved_at_TR"] = retrieved_at_tr
+df['callsign'] = df['callsign'].fillna('').str.strip()
 df["velocity_kmh"] = df["velocity"] * 3.6
 
 # 🛢️ Veritabanına aktar
