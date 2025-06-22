@@ -40,6 +40,6 @@ df["velocity_kmh"] = df["velocity"] * 3.6
 
 # 🛢️ Veritabanına aktar
 engine = create_engine(db_url)
-df.to_sql("ucus_verisi", con=engine, if_exists="append", index=False)
+df.to_sql("ucus_verisi", con=engine, if_exists="replace", index=False)
 
-print("✅ Veri başarıyla yüklendi.")
+print("✅ Veri Neon PostgreSQL'e başarıyla yüklendi.")
