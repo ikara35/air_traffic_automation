@@ -73,7 +73,8 @@ Write data into Neon.tech PostgreSQL.
 ---
 
 ## 👤 Author
-[Ibrahim KARAMAN](https://www.linkedin.com/in/yourprofile)  
+📎 [LinkedIn: Ibrahim KARAMAN](https://www.linkedin.com/in/ibrahim-karaman-data-analyst/)
+
 📧 ibrahimkaraman711@gmail.com
 
 
