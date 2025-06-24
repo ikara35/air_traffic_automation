@@ -1,32 +1,41 @@
 name: Air Traffic Automation
 
+# 🕒 This workflow runs automatically every 15 minutes and can also be triggered manually
 on:
   schedule:
-    - cron: '*/15 * * * *'  # Her 15 dakikada bir
-  workflow_dispatch:        # Elle tetiklemeye de izin verir
+    - cron: '*/15 * * * *'  # Runs every 15 minutes (UTC time)
+  workflow_dispatch:        # Allows manual trigger via the GitHub Actions UI
 
 jobs:
   fetch-and-upload:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 🌐 Uses the latest stable Ubuntu environment
 
     env:
+      # 🔐 Environment variables set using GitHub repository secrets
       OPEN_SKY_CLIENT_ID: ${{ secrets.OPEN_SKY_CLIENT_ID }}
       OPEN_SKY_CLIENT_SECRET: ${{ secrets.OPEN_SKY_CLIENT_SECRET }}
       NEON_DB_URL: ${{ secrets.NEON_DB_URL }}
 
     steps:
-    - name: Checkout Repo
+    - name: 📥 Clone the repository
       uses: actions/checkout@v3
+      # This step fetches the latest code from the repository into the workflow runner
 
-    - name: Set up Python
+    - name: 🐍 Set up Python environment
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.10'  # Specifies Python version to be used
 
-    - name: Install dependencies
+    - name: 📦 Install required Python packages
       run: |
         python -m pip install --upgrade pip
         pip install pandas requests sqlalchemy psycopg2-binary
+      # Installs all dependencies necessary for the air traffic tracking script
 
-    - name: Run air traffic script
+    - name: ✈️ Run Air Traffic Data Script
       run: python script.py
+      # This step executes the Python script that:
+      # - Authenticates with the OpenSky Network API
+      # - Pulls live flight data in Turkish airspace
+      # - Identifies aircraft approaching selected airports
+      # - Uploads the data to your Neon PostgreSQL database
