@@ -5,11 +5,11 @@ A real-time flight tracking and analytics system for Turkish airspace using Open
 ---
 
 ## 🚀 Features
-- Live flight data collection from OpenSky API
-- Data processing and transformation with Python
-- Scheduled automation via GitHub Actions
-- PostgreSQL storage for analytics
-- Power BI dashboard integration
+- Live flight data collection from **OpenSky API**
+- Data processing and transformation with **Python**
+- Scheduled automation via **GitHub Actions**
+- **PostgreSQ**L storage for analytics
+- **Power BI** dashboard integration
 
 ---
 
@@ -21,10 +21,10 @@ A real-time flight tracking and analytics system for Turkish airspace using Open
 ---
 
 ## 🛠️ Tech Stack
-- Python (pandas, requests, psycopg2)
-- GitHub Actions (cron scheduling)
-- PostgreSQL (Neon.tech)
-- Power BI (real-time dashboard)
+- **Python** (pandas, requests, psycopg2)
+- **GitHub Actions** (cron scheduling)
+- **PostgreSQL (Neon.tech)**
+- **Power BI** (real-time dashboard)
 
 ---
 
@@ -34,7 +34,7 @@ A real-time flight tracking and analytics system for Turkish airspace using Open
 ---
 
 ## 📅 Automation Schedule
-- The data pipeline runs every 15 minutes via GitHub Actions.
+- The data pipeline runs every 15 minutes **via GitHub Actions.**
 
 ---
 
