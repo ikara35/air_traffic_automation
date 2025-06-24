@@ -5,19 +5,6 @@ from datetime import datetime, timezone, timedelta
 from sqlalchemy import create_engine
 from math import radians, cos, sin, asin, sqrt 
 
-# 🔐 Secrets from GitHub Actions
-client_id = os.getenv("OPEN_SKY_CLIENT_ID")
-client_secret = os.getenv("OPEN_SKY_CLIENT_SECRET")
-db_url = os.getenv("NEON_DB_URL")
-
-# 🎫 Token alma
-token_response = requests.post("https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token", data={
-    "grant_type": "client_credentials",
-    "client_id": client_id,
-    "client_secret": client_secret
-})
-access_token = token_response.json()["access_token"]
-
 # 📌 Havalimanı koordinatları (İstanbul, İzmir, Antalya)
 airport_coords = {
     "LTBA": (40.9769, 28.8146),
@@ -51,6 +38,18 @@ def check_approach(row):
     except:
         return ""
 
+# 🔐 Secrets from GitHub Actions
+client_id = os.getenv("OPEN_SKY_CLIENT_ID")
+client_secret = os.getenv("OPEN_SKY_CLIENT_SECRET")
+db_url = os.getenv("NEON_DB_URL")
+
+# 🎫 Token alma
+token_response = requests.post("https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token", data={
+    "grant_type": "client_credentials",
+    "client_id": client_id,
+    "client_secret": client_secret
+})
+access_token = token_response.json()["access_token"]
 
 # 📡 API'den veri çek
 params = {"lamin": 35.0, "lamax": 43.0, "lomin": 25.0, "lomax": 45.0}
