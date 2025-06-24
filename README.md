@@ -8,7 +8,7 @@ A real-time flight tracking and analytics system for Turkish airspace using Open
 - Live flight data collection from **OpenSky API**
 - Data processing and transformation with **Python**
 - Scheduled automation via **GitHub Actions**
-- **PostgreSQ**L storage for analytics
+- **PostgreSQL** storage for analytics
 - **Power BI** dashboard integration
 
 ---
