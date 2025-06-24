@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 from datetime import datetime, timezone, timedelta
 from sqlalchemy import create_engine
+from math import radians, cos, sin, asin, sqrt 
 
 # 🔐 Secrets from GitHub Actions
 client_id = os.getenv("OPEN_SKY_CLIENT_ID")
