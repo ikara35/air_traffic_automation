@@ -1,4 +1,4 @@
-# ✈️ Air Traffic Automation
+# ✈️ Air Traffic Automation for Turkish Airspace
 
 A real-time flight tracking and analytics system for Turkish airspace using OpenSky Network data, PostgreSQL, and Power BI.
 
@@ -46,7 +46,7 @@ A real-time flight tracking and analytics system for Turkish airspace using Open
 ---
 
 ## 👤 Author
-[Your Name](https://www.linkedin.com/in/yourprofile)  
-📧 your.email@example.com
+[Ibrahim KARAMAN](https://www.linkedin.com/in/yourprofile)  
+📧 ibrahimkaraman711@gmail.com
 
 
