@@ -33,8 +33,35 @@ A real-time flight tracking and analytics system for Turkish airspace using Open
 
 ---
 
-## 📅 Automation Schedule
-- The data pipeline runs every 15 minutes **via GitHub Actions.**
+## 📅 Scheduled Automation (GitHub Actions)
+This project includes a fully automated data pipeline using GitHub Actions. The workflow runs the script.py file every 15 minutes, fetches live flight data from OpenSky Network, processes it, and updates the PostgreSQL database hosted on Neon.tech.
+
+**🔄 Workflow Configuration
+Location: .github/workflows/script.yml**
+
+yaml
+on:
+  schedule:
+    - cron: '*/15 * * * *'  **# Runs every 15 minutes*
+  workflow_dispatch:        **# Also allows manual trigger*
+**🔧 What It Does**
+Triggers every 15 minutes using GitHub's cron scheduler.
+
+Sets up a Python 3.10 environment.
+
+Installs required dependencies: **pandas, requests, sqlalchemy, psycopg2-binary.**
+
+Runs the script.py to:
+
+Authenticate with OpenSky API.
+
+Fetch live aircraft data over Turkish airspace.
+
+Detect approaching aircraft near Istanbul, Izmir, and Antalya.
+
+Write data into Neon.tech PostgreSQL.
+
+**✅ The automation makes the system fully serverless and maintenance-free.**
 
 ---
 
