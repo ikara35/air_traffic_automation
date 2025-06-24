@@ -29,7 +29,7 @@ A real-time flight tracking and analytics system for Turkish airspace using Open
 ---
 
 ## 📈 Sample Dashboard (Power BI)
-![Dashboard Screenshot](link_to_image_or_dashboard)
+[![Dashboard Screenshot] (https://github.com/ikara35/air_trafic_automation/blob/main/dashboard_screenshot.png)
 
 ---
 
