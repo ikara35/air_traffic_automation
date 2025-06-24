@@ -25,18 +25,27 @@ def haversine(lat1, lon1, lat2, lon2):
 
 def check_approach(row):
     try:
-        if pd.isna(row["latitude"]) or pd.isna(row["longitude"]) or pd.isna(row["baro_altitude"]):
+        lat = row.get("latitude")
+        lon = row.get("longitude")
+        alt = row.get("baro_altitude") or row.get("geo_altitude")  # fallback
+
+        if pd.isna(lat) or pd.isna(lon) or pd.isna(alt):
             return ""
-        if row["baro_altitude"] > 4000:
+        if row.get("on_ground") in [True, 't', 'T', 'true', 1]:
             return ""
+        if alt > 4000:
+            return ""
+
         results = []
-        for name, (lat_airport, lon_airport) in airport_coords.items():
-            distance = haversine(row["latitude"], row["longitude"], lat_airport, lon_airport)
-            if distance < 100:
+        for name, (lat_ap, lon_ap) in airport_coords.items():
+            distance = haversine(lat, lon, lat_ap, lon_ap)
+            if distance < 100:  # km
                 results.append(name)
         return ",".join(results)
-    except:
+    except Exception as e:
+        print(f"[check_approach] Hata: {e}")
         return ""
+
 
 # 🔐 Secrets from GitHub Actions
 client_id = os.getenv("OPEN_SKY_CLIENT_ID")
