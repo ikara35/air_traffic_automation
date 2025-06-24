@@ -42,8 +42,9 @@ Location: .github/workflows/script.yml**
 yaml
 on:
   schedule:
-    - cron: '*/15 * * * *'  **# Runs every 15 minutes*
-  workflow_dispatch:        **# Also allows manual trigger*
+    - cron: '*/15 * * * *'  ** # Runs every 15 minutes*
+  workflow_dispatch:        ** # Also allows manual trigger*
+
 **🔧 What It Does**
 Triggers every 15 minutes using GitHub's cron scheduler.
 
