@@ -67,9 +67,9 @@ Write data into Neon.tech PostgreSQL.
 ---
 
 ## ⚙️ Setup Instructions
-1. Clone the repo
-2. Configure `.env` with API keys and DB credentials
-3. Run `script.py` or trigger workflow
+1. Clone the repo.
+2. Configure `.env` with API keys and DB credentials.
+3. Run `script.py` or trigger workflow.
 
 ---
 
